@@ -24,3 +24,18 @@ module.exports.createTask = function(req, res){
         return res.redirect('back');
     });
 }
+
+// controller to delete task from db
+module.exports.deleteTodo = function(req, res){
+    //get id from the url
+    let id = req.params._id;
+    //find contact in ddb using id and delete
+    Todo.findByIdAndDelete(id, function(err){
+        if(err){
+            console.log('error in deleting from db');
+            return;
+        }
+    });
+    //go back
+    return res.redirect('back');
+}
