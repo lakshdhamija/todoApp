@@ -5,7 +5,9 @@ module.exports.home = function(req, res){
             title: "Codeial | Home"
         });
 }
-module.exports.createTask = function(req, res){
+
+//controller to add task in db
+module.exports.createTask = function(req, res){ 
     Todo.create(req.body, function(err, newTodo){
         if(err){
             console.log('Error in creating Todo');
