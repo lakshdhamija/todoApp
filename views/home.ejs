@@ -11,5 +11,16 @@
         <input type="text" name="description">
         <input type="submit" value="Submit">
     </form>
+    <div class= "list-container">
+        <ul class="list">
+            <% for(let i of todo_list) { %> 
+                <li>
+                    <div class="details">
+                        <p><%= i.description %></p>
+                    </div>
+                </li>
+            <% } %>
+        </ul>
+    </div>
 </body>
 </html>

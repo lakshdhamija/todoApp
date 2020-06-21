@@ -1,9 +1,16 @@
 const Todo = require('../models/todo');
 
 module.exports.home = function(req, res){
-        return res.render('home', {
-            title: "Codeial | Home"
+    Todo.find({}, function(err, todos){
+        if(err){
+            console.log('error in fetching todos from db');
+            return;
+        }
+        return res.render('home', { 
+            title: 'Todo List',
+            todo_list: todos
         });
+    });
 }
 
 //controller to add task in db
