@@ -7,42 +7,53 @@
     <link rel="stylesheet" href="/css/home.css">
 </head>
 <body>
-    <form action="/create-task" class="todo-form" method="POST">
-        <!-- Description -->
-        <div class="description">
-            <p>Enter task</p>
-            <input type="text" name="description">
+    <div class="main">
+        <h1 class="app-title">TODO App</h1>
+        <form action="/create-task" class="todo-form" method="POST">
+            <!-- Description -->
+            <div class="description">
+                <p>DESCRIPTION</p>
+                <input type="text" name="description" placeholder="Enter your task" required>
+            </div>
+            <div class="second">
+                <!-- Category -->
+                <div class="category">
+                    <select name="category" required>
+                        <option>Personal</option>
+                        <option>Work</option>
+                        <option>School</option>
+                        <option>Cleaning</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+                <!-- Date -->
+                <div class="date">
+                        <input type="date" name="date" required>
+                </div>
+            </div>
+            <input class="submit" type="submit" value="Add Task ">
+        </form>
+        <div class= "list-container">
+            <ul class="list">
+                <% for(let i of todo_list) { %> 
+                    <li>
+                        <div class="details">
+                            <input type="checkbox" id="myCheck" onclick="myFunction()">
+                            <p id="text"><%= i.description %></p>
+                        </div>
+                        <div class="date-disp"><i class="fas fa-calendar-week"></i><%= i.date %></div>
+                        <div class="category-disp">
+                            <p class="category-text"><%= i.category %></p>
+                        </div>
+                        <div class="del-btn">
+                            <a href="/delete-todo/<%= i._id %>"><i class="far fa-trash-alt"></i></a>
+                        </div>
+                    </li>
+                <% } %>
+            </ul>
         </div>
-        <!-- Category -->
-        <div class="category">
-            <select name="category">
-                <option>Personal</option>
-                <option>Work</option>
-                <option>School</option>
-                <option>Cleaning</option>
-                <option>Other</option>
-            </select>
-        </div>
-        <!-- Date -->
-        <div class="date">
-                <input type="date" name="date">
-        </div>
-        <input type="submit" value="Submit">
-    </form>
-    <div class= "list-container">
-        <ul class="list">
-            <% for(let i of todo_list) { %> 
-                <li>
-                    <div class="details">
-                        <p><%= i.description %></p>
-                    </div>
-                    <div class="del-btn">
-                        <a href="/delete-todo/<%= i._id %>"><i class="far fa-trash-alt"></i></a>
-                    </div>
-                </li>
-            <% } %>
-        </ul>
     </div>
     <script src="https://kit.fontawesome.com/c18f6677f5.js" crossorigin="anonymous"></script>
+    <script src="/js/home.js"></script>
 </body>
 </html>
